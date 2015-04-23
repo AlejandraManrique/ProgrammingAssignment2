@@ -42,14 +42,26 @@ cacheSolve <- function(x, ...) {
   
   ## Return a matrix that is the inverse of 'x'
   
+  ## try to get the inversed matrix 
   mInt <- x$getsolve()
+  
+  ## if it's null it's because it has not been calculated before
+  ## otherwise we just return it and function ends
   if(!is.null(mInt)) {
     message("getting cached data")
     return(mInt)
   }
+  
+  ## if it's 1st time calculated, we get the matrix
   matdata <- x$get()
+  
+  ## the inverse matrix is calculated
   mRes <- solve(matdata, ...)
+  
+  ## and its cached
   x$setsolve(mRes)
+  
+  ## and returned it
   mRes
   
   
